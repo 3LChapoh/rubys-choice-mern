@@ -5,6 +5,7 @@ import AdminVendors from '../components/admin/AdminVendors'
 import AdminProducts from '../components/admin/AdminProducts'
 import AdminOrders from '../components/admin/AdminOrders'
 import AdminHero from '../components/admin/AdminHero'
+import ErrorBoundary from '../components/ErrorBoundary'
 
 function Dashboard() {
   const { admin, logout } = useAdminAuth()
@@ -35,10 +36,12 @@ function Dashboard() {
           Hero Images
         </button>
       </div>
-      {tab === 'vendors' && <AdminVendors />}
-      {tab === 'products' && <AdminProducts />}
-      {tab === 'orders' && <AdminOrders />}
-      {tab === 'hero' && <AdminHero />}
+      <ErrorBoundary key={tab}>
+        {tab === 'vendors' && <AdminVendors />}
+        {tab === 'products' && <AdminProducts />}
+        {tab === 'orders' && <AdminOrders />}
+        {tab === 'hero' && <AdminHero />}
+      </ErrorBoundary>
     </section>
   )
 }
